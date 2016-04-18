@@ -1,0 +1,29 @@
+<html ng-app="myApp">
+  <head>
+    <title>My Angular App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-cookies.js"></script>
+  </head>
+  <body>
+<div ng-controller="myCtrl">
+
+<form ng-submit="sendPost()">
+    <button type="submit">Send</button>
+</form>
+
+    </div>
+<script>
+angular.module('myApp', ['ngCookies'])
+.controller('myCtrl', function ($scope, $http,$cookies) {
+    $scope.sendPost = function() {
+        var data='<test>value</test>';
+
+        $http.post("https://testurl", data,{ headers: {'Content-Type':'text/xml'}}).then(function(response) {
+                        alert(response);
+        })
+
+    }
+})
+</script>
+</body>
+
